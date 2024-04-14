@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34714.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SalonJCA2", "SalonJCA2\SalonJCA2.csproj", "{8FDF5EAC-56F9-49A3-8E3E-0372B49DCCA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalonJCA2.Tests", "SalonJCA2.Tests\SalonJCA2.Tests.csproj", "{589228A8-DCB9-459B-8439-5C3785AD47AE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8FDF5EAC-56F9-49A3-8E3E-0372B49DCCA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FDF5EAC-56F9-49A3-8E3E-0372B49DCCA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FDF5EAC-56F9-49A3-8E3E-0372B49DCCA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FDF5EAC-56F9-49A3-8E3E-0372B49DCCA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{589228A8-DCB9-459B-8439-5C3785AD47AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{589228A8-DCB9-459B-8439-5C3785AD47AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{589228A8-DCB9-459B-8439-5C3785AD47AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{589228A8-DCB9-459B-8439-5C3785AD47AE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {020B497A-37BE-476B-8E20-BE73269554E4}
+	EndGlobalSection
+EndGlobal

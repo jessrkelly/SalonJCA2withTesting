@@ -1,0 +1,41 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+body, html {
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 100px; /* This will push my Footer away from the Main content so not spilling into the main content*/
+}
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+main {
+    padding-bottom: 40px;
+}
+
+footer {
+    background-color: #fadadd; /* Lighter shade of pink */
+    color: white;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px; /* This siza can change if i need more content in the footer */
+}

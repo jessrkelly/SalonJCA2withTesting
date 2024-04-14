@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/SalonJCA220240412141445/providers/Microsoft.ServiceLinker/linkers/ConnectionStringsDefaultContext_90F9E80784",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/salonjdatabase/databases/salonJDatabase",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:DefaultContext",
+      "dynamicId": null
+    }
+  }
+}

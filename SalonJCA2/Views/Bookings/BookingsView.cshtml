@@ -1,0 +1,41 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{
+    int x = 0;
+
+}
+<link href="~/css/Cateloguestyles.css" rel="stylesheet" />
+<h3>VIEW BOOKING</h3>
+<br />
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in ViewBag.bookinglist)
+        {
+            x++;
+            <tr>
+                <th scope="row">@x</th>
+                <td>@obj.Date</td>
+                <td>@obj.Time</td>
+                <td><a class="btn btn-secondary" asp-controller="Bookings" asp-action="Edit" asp-route-id="@obj.id">Edit</a></td>
+
+                <td><a class="btn btn-danger" asp-controller="Bookings" asp-action="Delete" asp-route-id="@obj.id">Cancel</a></td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>
+

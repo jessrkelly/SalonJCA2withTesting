@@ -1,0 +1,65 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Bookings
+<link href="~/css/Cateloguestyles.css" rel="stylesheet" />
+<h3>EDIT BOOKING</h3>
+<br />
+
+<form asp-action="EditPOST" asp-controller="bookings">
+    <input asp-for="serviceid" hidden />
+    <input asp-for="id" hidden />
+    <input asp-for="customerid" hidden />
+    <div class="form-group">
+        <label for="exampleInputEmail1"><b>Date</b></label>
+        <input type="date" class="form-control w-25 border-info " asp-for="Date" aria-describedby="emailHelp" placeholder="Name" required>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label for="exampleInputEmail1"><h4><u>Service</u></h4></label>
+        <br />
+        <div class="row">
+            <div class="col-2">
+                <p> <b>Name</b></p>
+            </div>
+            <div class="col-2">
+                @ViewBag.servicename
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-2">
+                <b>Price</b>
+            </div>
+            <div class="col-2">
+                @ViewBag.serviceprice
+            </div>
+
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-2">
+                <b>Service Type</b>
+            </div>
+            <div class="col-2">
+                @ViewBag.typename
+            </div>
+
+        </div>
+
+
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Time</label>
+        @Html.DropDownListFor(a => a.Time, new SelectList(ViewBag.times, "timeRang", "timeRang"), new { @class = "btn btn-default dropdown-toggle border-info" })
+    </div>
+    <br />
+
+
+    <button type="submit" class="btn btn-primary w-25">Update</button>
+</form>

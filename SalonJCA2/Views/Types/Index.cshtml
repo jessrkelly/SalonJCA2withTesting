@@ -1,0 +1,59 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    int x = 0;
+
+}
+@model Types
+<link href="~/css/Cateloguestyles.css" rel="stylesheet" />
+<h3>TYPES</h3>
+<br />
+
+<form asp-action="Add" asp-controller="Types">
+
+   
+
+    <div class="form-group">
+        <label for="exampleInputEmail1"><b>Name</b></label>
+        <input type="text" class="form-control w-25 " asp-for="TypeName" aria-describedby="emailHelp" placeholder="Name" required>
+      </div>
+      <br />
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Main Product</label>
+        @Html.DropDownListFor(a => a.productid, new SelectList(ViewBag.products, "id", "Name"), new { @class = "btn btn-default dropdown-toggle border-info" })
+    </div>
+    <br />
+
+
+    <button type="submit" class="btn btn-primary w-25">Add</button>
+</form>
+<br />
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Type Name</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+      
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in ViewBag.typelist)
+        {
+            x++;
+            <tr>
+                <th scope="row">@x</th>
+                <td>@obj.TypeName</td>
+                <td>@obj.Productname</td>
+                 <td><a class="btn btn-danger" asp-controller="Types" asp-action="Delete" asp-route-id="@obj.id">Delete</a></td>
+    
+        </tr>
+        }
+  
+    </tbody>
+</table>
+

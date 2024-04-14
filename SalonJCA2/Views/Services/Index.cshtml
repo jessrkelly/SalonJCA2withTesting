@@ -1,0 +1,92 @@
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    int x = 0;
+
+}
+@model Services
+<link href="~/css/Cateloguestyles.css" rel="stylesheet" />
+<h3>Service</h3>
+<br />
+
+<form asp-action="Add" asp-controller="Services" enctype="multipart/form-data">
+
+
+
+    <div class="form-group">
+        <label for="exampleInputEmail1"><b>Name</b></label>
+        <input type="text" class="form-control w-25 border-info " asp-for="Name" aria-describedby="emailHelp" placeholder="Name" required>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Main Product  &nbsp; &nbsp;  &nbsp;  &nbsp;  </label>
+        @Html.DropDownListFor(a => a.Productid, new SelectList(ViewBag.products, "id", "Name"), new { @class = "btn btn-default dropdown-toggle border-info w-25" })
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="exampleInputEmail1">Product Sub Types</label>
+        @Html.DropDownListFor(a => a.Typeid, new SelectList(ViewBag.types, "id", "TypeName"), new { @class = "btn btn-default dropdown-toggle border-info w-25" })
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="exampleInputEmail1"><b>Price</b></label>
+        <input type="number" class="form-control w-25 border-info " asp-for="Price" aria-describedby="emailHelp" placeholder="Price" required>
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="exampleInputEmail1"><b>Image</b></label>
+        <input type="file" class="form-control w-25 border-info " id="image" name="image" required>
+    </div>
+
+    <br />
+
+
+    <button type="submit" class="btn btn-primary w-25">Add</button>
+</form>
+<br />
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Service Name</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in ViewBag.servicelist)
+        {
+            x++;
+            <tr>
+                <th scope="row">@x</th>
+                <td>@obj.Name</td>
+                <td><a class="btn btn-danger" asp-controller="Services" asp-action="Delete" asp-route-id="@obj.id">Delete</a></td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+
+<script>
+
+    var urllink = "";
+    $("#Productid").change(function (id) {
+
+        var url = "@Url.Action("Search", "Services")?id=" + $("#Productid").val();
+        window.location.href = url;
+
+    });
+
+    function foo(link) {
+
+        urllink = link;
+
+    }
+
+</script>

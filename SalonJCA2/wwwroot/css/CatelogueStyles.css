@@ -1,0 +1,243 @@
+﻿
+/* I will use a soft tone of coloyr on my website. Such as soft pinks/purples (Pastel shades). I used online sources such as https://htmlcolors.com/palette/323/pastel 
+    where they have great colour combinations aand codes available
+*/
+
+
+body {
+    background-color: #fff5f8; /* Light blush background */
+    font-family: "Open Sans", sans-serif;
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    height: 100%; /* Ensures the body takes at least the full height of the viewport */
+}
+
+h2 {
+color: #333; /* Softened text colour for better readability */
+font-size: 26px;
+font-weight: 300;
+text-align: center;
+text-transform: uppercase;
+position: relative;
+margin: 30px 0 60px; 
+}
+
+h2 b {
+color: #ff85a2; /* Soft blush for text */
+}
+
+h2::after {
+content: "";
+width: 100px;
+position: absolute;
+margin: 0 auto;
+height: 4px;
+background: #ff85a2; /* Blush bar under headers */
+left: 0;
+right: 0;
+bottom: -20px;
+}
+
+#login-submit {
+background-color: #ff6b81; /* Blush pink background colour */
+border: 1px solid #ff6b81; /* Matching border colour */
+color: white; /* White text colour */
+}
+
+#login-submit:hover {
+background-color: #ff5a70; /* Slightly darker blush pink for hover effect */
+border-color: #ff5a70; /* border colour on hover */
+}
+
+#registerSubmit {
+background-color: #ff6b81; /* Blush pink background colour */
+border: 1px solid #ff6b81; /* Matching border colour */
+color: white; /* White text colour */
+}
+
+#registerSubmit:hover {
+background-color: #ff5a70; /* darker blush pink for hover effect */
+border-color: #ff5a70; /* Border color on hover */
+}
+
+#submit-button {
+background-color: #ff6b81; /* Blush pink background colour */
+border: 1px solid #ff6b81; /* Matching border colour */
+color: white; /* White text colour  */
+}
+
+#submit-button:hover {
+background-color: #ff5a70; /* darker blush pink on hover */
+border-color: #ff5a70; /* order colour on hover */
+}
+
+
+.carousel {
+margin: 20px auto; /* Adjusted margin for tighter spacing */
+padding: 0 40px; /* Reduced padding for a more compact carousel */
+}
+
+.carousel .item {
+min-height: 330px; /* Unchanged, ensures consistent item height */
+text-align: center;
+overflow: hidden;
+}
+
+.carousel .item .img-box {
+height: 160px; /* Unchanged, defines image box height */
+width: 100%;
+position: relative;
+}
+
+.carousel .item img {
+max-width: 100%; /* Ensures image scales properly */
+max-height: 100%;
+display: inline-block;
+position: absolute;
+bottom: 0;
+margin: 0 auto;
+left: 0;
+right: 0;
+}
+
+.carousel .item h4 {
+font-size: 18px;
+margin: 10px 0;
+color: #333; /* Ensures text is readable against lighter backgrounds */
+}
+
+.carousel .item .btn {
+color: #fff; /* Text colour for buttons */
+border-radius: 0;
+font-size: 11px;
+text-transform: uppercase;
+font-weight: bold;
+background: #ff85a2; /* Blush button backgrounds */
+border: 1px solid #ff85a2; /* Consistent border colour */
+padding: 5px 10px;
+margin-top: 5px;
+line-height: 16px;
+}
+
+.carousel .item .btn:hover, .carousel .item .btn:focus {
+color: #fff;
+background: #d9738d; /* Darker shade for button hover */
+border-color: #d9738d;
+box-shadow: none;
+}
+
+.carousel .carousel-control {
+height: 100px;
+width: 40px;
+background: none;
+margin: auto 0;
+background: rgba(0, 0, 0, 0.1); /* Lighter control background */
+}
+
+.carousel .carousel-control i {
+font-size: 30px;
+position: absolute;
+top: 50%;
+display: inline-block;
+margin: -16px 0 0 0;
+z-index: 5;
+left: 0;
+right: 0;
+color: #ff85a2; /* Blush icons for navigation */
+text-shadow: none;
+font-weight: bold;
+}
+
+.carousel .item-price {
+font-size: 13px;
+padding: 2px 0;
+}
+
+.carousel .item-price strike {
+color: #999;
+}
+
+.carousel .item-price span {
+color: #86bd57; 
+}
+
+.carousel-indicators li, .carousel-indicators li.active {
+width: 10px;
+height: 10px;
+margin: 4px;
+border-radius: 50%;
+border-color: transparent;
+}
+
+.carousel-indicators li {
+background: rgba(0, 0, 0, 0.2);
+}
+
+.carousel-indicators li.active {
+background: #ff85a2; /* Blush active indicator */
+}
+
+footer.border-top {
+    background-color: #fadadd; /* Lighter shade of pink */
+    color: white; /* White text colour */
+    text-align: center; /* Centers the text horizontally */
+}
+
+footer a {
+color: white; /* Ensures links are white */
+text-decoration: underline; /* Underline for better visibility and consistency */
+}
+
+/* Adjusting hover effects for links within the footer */
+footer a:hover, footer a:focus {
+color: #f98ca1; /* Slightly darker shade of the lighter pink for hover effect */
+text-decoration: none; /* Optional: removes the underline on hover for a different effect */
+}
+
+
+
+.thumb-wrapper {
+    margin-bottom: 30px; /* Add space below each item to prevent overlap */
+    display: flex; /* Enable Flexbox */
+    flex-direction: column; /* Stack children elements vertically */
+    justify-content: space-between; /* Distribute space evenly */
+}
+
+.img-box {
+    height: 200px; /* Set a fixed height for the image container */
+    overflow: hidden; /* Hide parts of the image that exceed the container size */
+}
+
+    .img-box img {
+        max-width: 100%; /* Ensure the image is fully contained within its box */
+        max-height: 100%;
+        object-fit: cover; /* Cover the area without stretching */
+        position: absolute; /* Position image correctly within the img-box */
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+.thumb-content {
+    padding: 15px; /* Add padding inside the content area */
+    display: flex; /* Enable Flexbox */
+    flex-direction: column; /* Stack children elements vertically */
+    justify-content: space-between; /* Distribute space evenly */
+    align-items: center; /* Center-align the items */
+}
+
+.carousel .item .btn {
+    align-self: center; /* Center button within the flex container */
+    margin-top: 10px; /* Add space above the button */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767px) {
+    .thumb-wrapper {
+        margin-bottom: 20px; /* Increase space on smaller screens */
+    }
+
+    .img-box {
+        height: 150px; /* Adjust height on smaller screens */
+    }
+}

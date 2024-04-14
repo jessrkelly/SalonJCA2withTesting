@@ -1,0 +1,102 @@
+﻿@{
+	ViewData["Title"] = "Home Page";
+	List<Services> services_offered = ViewBag.services;
+}
+
+@* <p>@User.Identity.Name</p> *@
+@model Bookings
+
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bootstrap Product list for Ecommerce Website</title>
+<link href="~/css/Cateloguestyles.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+				<h2>SALON  <b>SERVICES</b></h2>
+				<div class="bg-dark form-group form-inline " style="height:35px; padding-top: 2px;">
+					<h6 class="text-white text-start">&nbsp;  Products &nbsp; </h6> @Html.DropDownListFor(a => a.serviceid, new SelectList(ViewBag.products, "id", "Name"), new { @class = "btn btn-default border-info w-25 dropdown-toggle text-start" })
+</div>
+			<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
+					
+			<div class="carousel-inner">
+					
+				<div class="item carousel-item active">
+			
+					<div class="row">
+					
+								@foreach (var obj in services_offered)
+								{
+									<div class="col-sm-3">
+										<div class="thumb-wrapper">
+											<div class="img-box">
+
+												<img src="@Url.Content(obj.path)" class="img-responsive img-fluid" alt="">
+											@* 	<img src="https://image.ibb.co/g0CAPp/ipad.jpg" class="img-responsive img-fluid" alt=""> *@
+											</div>
+											<div class="thumb-content">
+												<h4>@obj.Name</h4>
+												
+												<p class="item-price"> <span>€@obj.Price</span></p>
+											<p>@obj.TypeName</p>
+												<a asp-action="index" asp-controller="bookings" asp-route-id="@obj.id" class="btn btn-primary border-info ">Book</a>
+										@* 		/images/hcut1.jpg *@
+											</div>						
+										</div>
+									</div>
+								}
+
+
+						</div>
+						</div>
+			<!-- Carousel controls -->
+		@* 	<a class="carousel-control left carousel-control-prev" href="#myCarousel" data-slide="prev">
+				<i class="fa fa-angle-left"></i>
+			</a>
+			<a class="carousel-control right carousel-control-next" href="#myCarousel" data-slide="next">
+				<i class="fa fa-angle-right"></i>
+			</a> *@
+		</div>
+	
+	</div>
+</div>
+</div>
+</div>
+</body>
+</html>      
+
+
+
+
+<script>
+
+	var urllink = "";
+	$("#serviceid").change(function (id) {
+	
+		var url = "@Url.Action("Search", "Home")?txt=" + $("#serviceid").val();
+		window.location.href = url;
+			
+	});
+
+	function foo(link) {
+	
+		urllink = link;
+
+	}
+		
+</script>
+
