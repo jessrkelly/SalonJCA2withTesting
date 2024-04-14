@@ -2,60 +2,73 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SalonJCA2.Models;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SalonJCA2.Controllers
 {
     [Authorize]
+    // Allows only Authorized users to access the bookings
     public class BookingsController : Controller
     {
+        // Interaction with Database
         private ApplicationDbContext _db;
         public BookingsController(ApplicationDbContext db)
         {
             _db = db;
         }
-        public IActionResult DateChange(int id,DateTime dt)
+
+        // Method to get the count of Admins
+        private async Task<int> GetAdminCountAsync()
         {
-            var Admins = _db.UserRoles.Count();
-            var timeSlots = _db.times.FromSqlRaw("select * from times where not timeRang in ( SELECT  [TimeSlot]  FROM [Salon].[dbo].[timeMaps] where date='"+dt.ToString()+"' group by [TimeSlot] having count(id)>="+Admins.ToString()+")").ToList();
-
-       
-
-            var data = _db.services.Where(x => x.id == id).FirstOrDefault();
-
-            ViewBag.servicename = data.Name;
-            ViewBag.serviceprice = data.Price;
-            ViewBag.typename = _db.types.Where(x => x.id == data.Typeid).FirstOrDefault().TypeName;
-            ViewBag.times = timeSlots;
-            ViewBag.bookinglist = _db.bookings.ToList();
-            Bookings bk = new Bookings();
-            bk.serviceid = id;
-            bk.Date=dt;
-        
-            return View("Index",bk);
+            return await _db.UserRoles.CountAsync(ur => _db.Roles.Any(r => r.Id == ur.RoleId && r.Name == "Admin"));
         }
-        public IActionResult Index(int id)
+
+
+        // Changes the date of a booking and updates available time slots.
+        public async Task<IActionResult> DateChange(int id, DateTime dt)
         {
-            var Admins = _db.UserRoles.Count();
+            var AdminCount = await GetAdminCountAsync();
+            var timeSlots = await _db.times.FromSqlRaw(
+                "SELECT * FROM times WHERE Id NOT IN (SELECT TimeId FROM timeMaps WHERE Date = {0} GROUP BY TimeId HAVING COUNT(*) >= {1})", dt.Date, AdminCount
+            ).ToListAsync();
 
-            // Retrieving booked slots with adequate admin coverage
-            var bookedSlots = _db.timeMaps
-                                 .GroupBy(tm => new { tm.TimeSlot, tm.Date })
-                                 .Where(g => g.Count() >= Admins && g.Key.Date == DateTime.Now.Date)
-                                 .Select(g => g.Key.TimeSlot)
-                                 .ToList();  // This forces the execution of the above query and allows using the result in further in-memory operations.
+            var data = await _db.services.FirstOrDefaultAsync(x => x.id == id);
+            // Populate view model as before
+            if (data != null)
+            {
+                ViewBag.servicename = data.Name;
+                ViewBag.serviceprice = data.Price;
+                ViewBag.typename = (await _db.types.FirstOrDefaultAsync(x => x.id == data.Typeid))?.TypeName;
+            }
 
-            // Retrieving available time slots that are not fully booked
-            var timeSlots = _db.times
-                               .Where(t => !bookedSlots.Contains(t.timeRang))
-                               .ToList();
+            ViewBag.times = timeSlots;
+            ViewBag.bookinglist = await _db.bookings.ToListAsync();
+            return View("Index", new Bookings { serviceid = id, Date = dt });
+        }
 
-            var data = _db.services.FirstOrDefault(x => x.id == id);
+        //Displays the initial booking page with available time slots.
+        public async Task<IActionResult> Index(int id)
+        {
+            var AdminCount = await GetAdminCountAsync();
+
+            var bookedSlots = await _db.timeMaps
+                                       .Where(tm => tm.Date == DateTime.Now.Date)
+                                       .GroupBy(tm => tm.TimeSlot)
+                                       .Where(g => g.Count() >= AdminCount)
+                                       .Select(g => g.Key)
+                                       .ToListAsync();
+
+            var timeSlots = await _db.times.Where(t => !bookedSlots.Contains(t.timeRang)).ToListAsync();
+
+            var data = await _db.services.FirstOrDefaultAsync(x => x.id == id);
 
             if (data != null)
             {
                 ViewBag.servicename = data.Name;
                 ViewBag.serviceprice = data.Price;
-                ViewBag.typename = _db.types.FirstOrDefault(x => x.id == data.Typeid)?.TypeName;
+                ViewBag.typename = (await _db.types.FirstOrDefaultAsync(x => x.id == data.Typeid))?.TypeName;
             }
             else
             {
@@ -65,7 +78,7 @@ namespace SalonJCA2.Controllers
             }
 
             ViewBag.times = timeSlots;
-            ViewBag.bookinglist = _db.bookings.ToList();
+            ViewBag.bookinglist = await _db.bookings.ToListAsync();
 
             var bk = new Bookings
             {
@@ -75,7 +88,8 @@ namespace SalonJCA2.Controllers
 
             return View(bk);
         }
-//Now Display the Booking View to the user (With the date and time etc)
+
+        // Now Display the Booking View to the user (With the date and time etc)
         public IActionResult BookingsView()
         {
             ViewBag.bookinglist = _db.bookings.ToList();
@@ -83,40 +97,54 @@ namespace SalonJCA2.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(Bookings model)
+        public async Task<IActionResult> Add(Bookings model)
         {
-            var slot = new TimeMap
+            if (ModelState.IsValid)
             {
-                Date=model.Date,
-                TimeSlot=model.Time
-            };
-            _db.Add(slot);  
-            _db.Add(model);
-            _db.SaveChanges();
-            return RedirectToAction("BookingsView", new {id=model.serviceid});
+                var slot = new TimeMap
+                {
+                    Date = model.Date,
+                    TimeSlot = model.Time
+                };
+                _db.Add(slot);
+                _db.Add(model);
+                await _db.SaveChangesAsync();
+                return RedirectToAction("BookingsView", new { id = model.serviceid });
+            }
+            // Handle the case when model is not valid
+            return View(model);
         }
 
+
+        // Deletes a booking
         public IActionResult Delete(int id)
         {
-         
-            var data = _db.bookings.Where(x => x.id == id).FirstOrDefault();
-            var timeSlot = _db.timeMaps.Where(x => x.Date == data.Date && x.TimeSlot == data.Time).FirstOrDefault();
-            _db.Remove(timeSlot);
-            _db.Remove(data);
+            var data = _db.bookings.FirstOrDefault(x => x.id == id);
+            if (data == null)
+            {
+                // Optionally add a user-friendly error message or log the error
+                return View("Error");  // Ensure you have an Error View or redirect appropriately
+            }
+
+            var timeSlot = _db.timeMaps.FirstOrDefault(x => x.Date == data.Date && x.TimeSlot == data.Time);
+            if (timeSlot != null)
+            {
+                _db.timeMaps.Remove(timeSlot);
+            }
+
+            _db.bookings.Remove(data);
             _db.SaveChanges();
             return RedirectToAction("BookingsView");
         }
 
+
         public IActionResult Edit(int id)
         {
-          
-           
             ViewBag.times = _db.times.ToList();
             var data = _db.bookings.Where(x => x.id == id).FirstOrDefault();
             var servicedata = _db.services.Where(x => x.id == data.serviceid).FirstOrDefault();
             ViewBag.servicename = servicedata.Name;
             ViewBag.serviceprice = servicedata.Price;
-
             ViewBag.typename = _db.types.Where(x => x.id == servicedata.Typeid).FirstOrDefault().TypeName;
 
             return View(data);
@@ -124,13 +152,9 @@ namespace SalonJCA2.Controllers
 
         public IActionResult EditPOST(Bookings model)
         {
-            
             _db.Update(model);
             _db.SaveChanges();
-
             return RedirectToAction("BookingsView");
         }
-
-
     }
 }
