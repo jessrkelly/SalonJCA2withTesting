@@ -11,62 +11,62 @@
 }
 
 @model Bookings
-<link href="~/css/Cateloguestyles.css" rel="stylesheet" />
+<link href="~/css/CatelogueStyles.css" rel="stylesheet" />
 <h3>BOOKING</h3>
 <br />
 <div class="row">
     <div class="col-5">
-<form asp-action="Add" asp-controller="bookings">
-    <input asp-for="serviceid" hidden/>
-    <div class="form-group">
-        <label for="exampleInputEmail1"><b>Date</b></label>
-        <input type="date" class="form-control w-50 border-info " asp-for="Date" aria-describedby="emailHelp" placeholder="Name" required>
-    </div>
-    <br />
+        <form asp-action="Add" asp-controller="bookings">
+            <input asp-for="serviceid" hidden />
+            <div class="form-group">
+                <label for="exampleInputEmail1"><b>Date</b></label>
+                <input type="date" class="form-control w-50 border-info " asp-for="Date" aria-describedby="emailHelp" placeholder="Name" required>
+            </div>
+            <br />
 
-    <div class="form-group">
-        <label for="exampleInputEmail1"><h4><u>Service</u></h4></label>
-        <br />
-        <div class="row">
-            <div class="col-4">
-               <p> <b>Name</b></p>
-            </div>
-            <div class="col">
-                @ViewBag.servicename
-            </div>
-        </div>
-     <br />
-        <div class="row">
-            <div class="col-4">
-                <b>Price</b>
-            </div>
-            <div class="col">
-                @ViewBag.serviceprice
-            </div>
-            
-        </div>
-        <br/>
-        <div class="row">
-            <div class="col-4">
-                <b>Service Type</b>
-            </div>
-            <div class="col">
-                @ViewBag.typename
-            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1"><h4><u>Service</u></h4></label>
+                <br />
+                <div class="row">
+                    <div class="col-4">
+                        <p> <b>Name</b></p>
+                    </div>
+                    <div class="col">
+                        @ViewBag.servicename
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-4">
+                        <b>Price</b>
+                    </div>
+                    <div class="col">
+                        @ViewBag.serviceprice
+                    </div>
 
-        </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-4">
+                        <b>Service Type</b>
+                    </div>
+                    <div class="col">
+                        @ViewBag.typename
+                    </div>
 
-    
-    </div>
-    <br />
+                </div>
 
-    <div class="form-group">
-        <label for="exampleInputEmail1">Time</label>
-        @Html.DropDownListFor(a => a.Time, new SelectList(ViewBag.times, "timeRang", "timeRang"), new { @class = "btn btn-default dropdown-toggle border-info" })
-    </div>
-    <br />
 
-            @if (tm.Count>0)
+            </div>
+            <br />
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Time</label>
+                @Html.DropDownListFor(a => a.Time, new SelectList(ViewBag.times, "timeRang", "timeRang"), new { @class = "btn btn-default dropdown-toggle border-info" })
+            </div>
+            <br />
+
+            @if (tm.Count > 0)
             {
 
                 <button type="submit" class="btn btn-primary w-25">BOOK</button>
@@ -75,8 +75,8 @@
             {
                 <button type="submit" class="btn btn-primary w-50" disabled>Service Unavilable on @Model.Date.ToString("dd/MM/yy")</button>
             }
-           
-</form>
+
+        </form>
     </div>
     <div class="col">
         <img src="~/images/booking.jpg" width="600" height="400" />

@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -7,13 +9,13 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/SalonJCA2.styles.css" asp-append-version="true" />
-    <link href="~/css/Cateloguestyles.css" rel="stylesheet" />
+    <link href="~/css/CatelogueStyles.css" rel="stylesheet" />
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -30,6 +32,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+
 
                         @*     THIS section will allocate what member is logging in. If Admin - then they can update the site. If user they can book and handle their bookings.
                         *@
@@ -55,14 +58,15 @@
                     <ul class="nav navbar-nav navbar-right">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li><a asp-area="Identity" asp-page="/Account/Logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+                            var userName = User.Identity.Name.Split('@')[0];
+                            var displayName = char.ToUpper(userName[0]) + userName.Substring(1);
+                            <li><a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @displayName!</a></li>
+                            <li><a asp-area="Identity" asp-page="/Account/Logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                         }
                         else
                         {
                             <li><a asp-area="Identity" asp-page="/Account/Register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                             <li><a asp-area="Identity" asp-page="/Account/Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-
-
                         }
                     </ul>
                 </div>
@@ -76,14 +80,15 @@
             @RenderBody()
         </main>
     </div>
-    
-    *@*    
+
+    @* //UNABLE to get footer stop stay datalist base color-profile page. Spent alot color-profile time trying stop fix cite however, didnt't succeed. Removed for the momentt */
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - Salon J - <a href="https://www.google.com/maps/place/Peter+Mark/53.2675499,-6.1388096,17z/data=!3m1!4b1!4m6!3m5!1s0x486707d7afe09441:0x549af52a8026813f!8m2!3d53.2675499!4d-6.1362347!16s%2Fg%2F1pzs0plxb?entry=ttu" target="_blank">Find Us</a> - <a href="/Privacy">Privacy Policy</a>
-        </div>
-    </footer>
-    *@
+    <div class="container">
+    &copy; 2024 - Salon J - <a href="https://www.google.com/maps/place/Peter+Mark/53.2675499,-6.1388096,17z/data=!3m1!4b1!4m6!3m5!1s0x486707d7afe09441:0x549af52a8026813f!8m2!3d53.2675499!4d-6.1362347!16s%2Fg%2F1pzs0plxb?entry=ttu" target="_blank">Find Us</a> - <a href="/Privacy">Privacy Policy</a>
+    </div>
+    </footer>*@
+
+
 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -92,4 +97,3 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
-

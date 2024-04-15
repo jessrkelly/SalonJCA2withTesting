@@ -3,7 +3,6 @@
     where they have great colour combinations aand codes available
 */
 
-
 body {
     background-color: #fff5f8; /* Light blush background */
     font-family: "Open Sans", sans-serif;
@@ -12,232 +11,354 @@ body {
     height: 100%; /* Ensures the body takes at least the full height of the viewport */
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+    body > .main-content {
+        flex: 1 0 auto; /* The 1 will allow the content to expand, 0 prevents it from shrinking, and auto determines the basis for the layout to be automatic. */
+        /* Add padding-bottom if your footer has a fixed height, equivalent to the height of the footer, to prevent content from hiding behind it */
+    }
+
 h2 {
-color: #333; /* Softened text colour for better readability */
-font-size: 26px;
-font-weight: 300;
-text-align: center;
-text-transform: uppercase;
-position: relative;
-margin: 30px 0 60px; 
+    color: #333; /* Softened text colour for better readability */
+    font-size: 26px;
+    font-weight: 300;
+    text-align: center;
+    text-transform: uppercase;
+    position: relative;
+    margin: 30px 0 60px;
 }
 
-h2 b {
-color: #ff85a2; /* Soft blush for text */
-}
+    h2 b {
+        color: #ff85a2; /* Soft blush for text */
+    }
 
-h2::after {
-content: "";
-width: 100px;
-position: absolute;
-margin: 0 auto;
-height: 4px;
-background: #ff85a2; /* Blush bar under headers */
-left: 0;
-right: 0;
-bottom: -20px;
-}
+    h2::after {
+        content: "";
+        width: 100px;
+        position: absolute;
+        margin: 0 auto;
+        height: 4px;
+        background: #ff85a2; /* Blush bar under headers */
+        left: 0;
+        right: 0;
+        bottom: -20px;
+    }
 
 #login-submit {
-background-color: #ff6b81; /* Blush pink background colour */
-border: 1px solid #ff6b81; /* Matching border colour */
-color: white; /* White text colour */
+    background-color: #ff6b81; /* Blush pink background colour */
+    border: 1px solid #ff6b81; /* Matching border colour */
+    color: white; /* White text colour */
 }
 
-#login-submit:hover {
-background-color: #ff5a70; /* Slightly darker blush pink for hover effect */
-border-color: #ff5a70; /* border colour on hover */
-}
+    #login-submit:hover {
+        background-color: #ff5a70; /* Slightly darker blush pink for hover effect */
+        border-color: #ff5a70; /* border colour on hover */
+    }
 
 #registerSubmit {
-background-color: #ff6b81; /* Blush pink background colour */
-border: 1px solid #ff6b81; /* Matching border colour */
-color: white; /* White text colour */
+    background-color: #ff6b81; /* Blush pink background colour */
+    border: 1px solid #ff6b81; /* Matching border colour */
+    color: white; /* White text colour */
 }
 
-#registerSubmit:hover {
-background-color: #ff5a70; /* darker blush pink for hover effect */
-border-color: #ff5a70; /* Border color on hover */
-}
+    #registerSubmit:hover {
+        background-color: #ff5a70; /* darker blush pink for hover effect */
+        border-color: #ff5a70; /* Border color on hover */
+    }
 
 #submit-button {
-background-color: #ff6b81; /* Blush pink background colour */
-border: 1px solid #ff6b81; /* Matching border colour */
-color: white; /* White text colour  */
+    background-color: #ff6b81; /* Blush pink background colour */
+    border: 1px solid #ff6b81; /* Matching border colour */
+    color: white; /* White text colour  */
 }
 
-#submit-button:hover {
-background-color: #ff5a70; /* darker blush pink on hover */
-border-color: #ff5a70; /* order colour on hover */
-}
+    #submit-button:hover {
+        background-color: #ff5a70; /* darker blush pink on hover */
+        border-color: #ff5a70; /* order colour on hover */
+    }
 
 
 .carousel {
-margin: 20px auto; /* Adjusted margin for tighter spacing */
-padding: 0 40px; /* Reduced padding for a more compact carousel */
+    margin: 20px auto; /* Adjusted margin for tighter spacing */
+    padding: 0 40px; /* Reduced padding for a more compact carousel */
 }
 
-.carousel .item {
-min-height: 330px; /* Unchanged, ensures consistent item height */
-text-align: center;
-overflow: hidden;
-}
+    .carousel .item {
+        min-height: 330px; /* Unchanged, ensures consistent item height */
+        text-align: center;
+        overflow: hidden;
+    }
 
-.carousel .item .img-box {
-height: 160px; /* Unchanged, defines image box height */
-width: 100%;
-position: relative;
-}
+        .carousel .item .img-box {
+            height: 160px; /* Unchanged, defines image box height */
+            width: 100%;
+            position: relative;
+        }
 
-.carousel .item img {
-max-width: 100%; /* Ensures image scales properly */
-max-height: 100%;
-display: inline-block;
-position: absolute;
-bottom: 0;
-margin: 0 auto;
-left: 0;
-right: 0;
-}
+        .carousel .item img {
+            max-width: 100%; /* Ensures image scales properly */
+            max-height: 100%;
+            display: inline-block;
+            position: absolute;
+            bottom: 0;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+        }
 
-.carousel .item h4 {
-font-size: 18px;
-margin: 10px 0;
-color: #333; /* Ensures text is readable against lighter backgrounds */
-}
+        .carousel .item h4 {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #333; /* Ensures text is readable against lighter backgrounds */
+        }
 
-.carousel .item .btn {
-color: #fff; /* Text colour for buttons */
-border-radius: 0;
-font-size: 11px;
-text-transform: uppercase;
-font-weight: bold;
-background: #ff85a2; /* Blush button backgrounds */
-border: 1px solid #ff85a2; /* Consistent border colour */
-padding: 5px 10px;
-margin-top: 5px;
-line-height: 16px;
-}
+        .carousel .item .btn {
+            color: #fff; /* Text colour for buttons */
+            border-radius: 0;
+            font-size: 11px;
+            text-transform: uppercase;
+            font-weight: bold;
+            background: #ff85a2; /* Blush button backgrounds */
+            border: 1px solid #ff85a2; /* Consistent border colour */
+            padding: 5px 10px;
+            margin-top: 5px;
+            line-height: 16px;
+        }
 
-.carousel .item .btn:hover, .carousel .item .btn:focus {
-color: #fff;
-background: #d9738d; /* Darker shade for button hover */
-border-color: #d9738d;
-box-shadow: none;
-}
+            .carousel .item .btn:hover, .carousel .item .btn:focus {
+                color: #fff;
+                background: #d9738d; /* Darker shade for button hover */
+                border-color: #d9738d;
+                box-shadow: none;
+            }
 
-.carousel .carousel-control {
-height: 100px;
-width: 40px;
-background: none;
-margin: auto 0;
-background: rgba(0, 0, 0, 0.1); /* Lighter control background */
-}
+    .carousel .carousel-control {
+        height: 100px;
+        width: 40px;
+        background: none;
+        margin: auto 0;
+        background: rgba(0, 0, 0, 0.1); /* Lighter control background */
+    }
 
-.carousel .carousel-control i {
-font-size: 30px;
-position: absolute;
-top: 50%;
-display: inline-block;
-margin: -16px 0 0 0;
-z-index: 5;
-left: 0;
-right: 0;
-color: #ff85a2; /* Blush icons for navigation */
-text-shadow: none;
-font-weight: bold;
-}
+        .carousel .carousel-control i {
+            font-size: 30px;
+            position: absolute;
+            top: 50%;
+            display: inline-block;
+            margin: -16px 0 0 0;
+            z-index: 5;
+            left: 0;
+            right: 0;
+            color: #ff85a2; /* Blush icons for navigation */
+            text-shadow: none;
+            font-weight: bold;
+        }
 
-.carousel .item-price {
-font-size: 13px;
-padding: 2px 0;
-}
+    .carousel .item-price {
+        font-size: 13px;
+        padding: 2px 0;
+    }
 
-.carousel .item-price strike {
-color: #999;
-}
+        .carousel .item-price strike {
+            color: #999;
+        }
 
-.carousel .item-price span {
-color: #86bd57; 
-}
+        .carousel .item-price span {
+            color: #86bd57;
+        }
 
 .carousel-indicators li, .carousel-indicators li.active {
-width: 10px;
-height: 10px;
-margin: 4px;
-border-radius: 50%;
-border-color: transparent;
+    width: 10px;
+    height: 10px;
+    margin: 4px;
+    border-radius: 50%;
+    border-color: transparent;
 }
 
 .carousel-indicators li {
-background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.2);
 }
 
-.carousel-indicators li.active {
-background: #ff85a2; /* Blush active indicator */
-}
-
-footer.border-top {
-    background-color: #fadadd; /* Lighter shade of pink */
-    color: white; /* White text colour */
-    text-align: center; /* Centers the text horizontally */
-}
-
-footer a {
-color: white; /* Ensures links are white */
-text-decoration: underline; /* Underline for better visibility and consistency */
-}
-
-/* Adjusting hover effects for links within the footer */
-footer a:hover, footer a:focus {
-color: #f98ca1; /* Slightly darker shade of the lighter pink for hover effect */
-text-decoration: none; /* Optional: removes the underline on hover for a different effect */
-}
-
-
-
-.thumb-wrapper {
-    margin-bottom: 30px; /* Add space below each item to prevent overlap */
-    display: flex; /* Enable Flexbox */
-    flex-direction: column; /* Stack children elements vertically */
-    justify-content: space-between; /* Distribute space evenly */
-}
-
-.img-box {
-    height: 200px; /* Set a fixed height for the image container */
-    overflow: hidden; /* Hide parts of the image that exceed the container size */
-}
-
-    .img-box img {
-        max-width: 100%; /* Ensure the image is fully contained within its box */
-        max-height: 100%;
-        object-fit: cover; /* Cover the area without stretching */
-        position: absolute; /* Position image correctly within the img-box */
-        bottom: 0;
-        left: 0;
-        right: 0;
+    .carousel-indicators li.active {
+        background: #ff85a2; /* Blush active indicator */
     }
 
-.thumb-content {
-    padding: 15px; /* Add padding inside the content area */
-    display: flex; /* Enable Flexbox */
-    flex-direction: column; /* Stack children elements vertically */
-    justify-content: space-between; /* Distribute space evenly */
-    align-items: center; /* Center-align the items */
 }
+
+/* Thumb Wrapper */
+.thumb-wrapper {
+    background-color: #fff0f5; /* Soft shade of pink for the box around the image */
+    padding: 15px; /* Padding around the content */
+    border-radius: 8px; /* Rounded corners for the wrapper */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Box shadow for some depth */
+    margin-bottom: 20px; /* Space between the boxes */
+    transition: transform 0.3s ease-in-out; /* Smooth transition for hover effects */
+}
+
+    .thumb-wrapper:hover {
+        transform: translateY(-5px);
+    }
+
+/* Image Box */
+.img-box {
+    margin-bottom: 10px; /* Space between the image and the content below */
+}
+
+
+    .img-box img {
+        height: 200px;
+        width: 100%;
+        object-fit: cover;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+/* Button Styling */
+.thumb-content .btn-primary {
+    background-color: #ff6b81 !important; /* Pink color for the button */
+    border: none !important; /* No border */
+    border-radius: 25px !important; /* Fully rounded edges */
+    padding: 10px 15px !important; /* Padding inside the button */
+    font-size: 16px !important; /* Size of the text */
+    color: white !important; /* Text color */
+    text-transform: uppercase; /* Uppercase text */
+    font-weight: bold; /* Bold text */
+    letter-spacing: 1px; /* Spacing between letters */
+    transition: background-color 0.3s ease-in-out !important; /* Transition for the hover effect */
+    display: inline-block !important; /* Display inline-block */
+    text-decoration: none !important; /* No text decoration */
+    cursor: pointer; /* Cursor to pointer to indicate it's clickable */
+}
+
+    /* Button hover effect */
+    .thumb-content .btn-primary:hover {
+        background-color: #ff5a70 !important; /* Slightly darker pink on hover */
+    }
+
+h2 {
+    text-align: center;
+    color: #333;
+    padding: 20px 0;
+}
+
+h6 {
+    color: #fff;
+}
+
+/* General styling for the navigation bar */
+.bg-dark {
+    background-color: #333; /* Dark grey background */
+    padding: 55px 10px; /* Padding to match Bootstrap's default padding for containers */
+    border-radius: 10px; /* Optional: rounded corners */
+}
+
+/* Inline form group adjustments */
+.form-inline {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+}
+
+    /* Styling for the 'Products' label */
+    .form-inline h5 {
+        margin-right: 10px; /* Space between the label and the dropdown */
+        color: white; /* White color for the label text */
+        margin-bottom: 0; /* Removes default bottom margin */
+    }
+
+    /* Custom dropdown styling */
+    .form-inline .dropdown-service, /* This is a custom class you should add to your dropdown */
+    .form-inline .btn-default { /* Targeting Bootstrap's default dropdown button if it's used */
+        width: auto; /* Only as wide as its content */
+        padding: 8px 12px;
+        font-size: 15px;
+        line-height: 1.25;
+        color: #444; /* Text color */
+        background-color: #fff; /* White background for the dropdown */
+        border: 1px solid #ced4da; /* Light grey border */
+        border-radius: 4px; /* Rounded corners for the dropdown */
+        box-shadow: none; /* Removes any box shadow */
+        outline: none; /* Removes the blue outline on focus */
+    }
+
+        /* Styling for the dropdown when it's open or in focus to match the dark grey nav */
+        .form-inline .dropdown-service:focus,
+        .form-inline .btn-default:focus,
+        .form-inline .dropdown-service:active,
+        .form-inline .btn-default:active {
+            border-color: #aaa; /* Darker border color when the dropdown is focused or active */
+            box-shadow: 0 0 0 0.2rem rgba(255, 133, 162, 0.25); /* Optional: Adds a glow effect on focus */
+        }
+
+        /* Styling for the dropdown items */
+        .form-inline .dropdown-service option {
+            padding: 10px; /* Padding inside each dropdown option */
+            background-color: white; /* Ensures the dropdown items have a white background */
+            color: #444; /* Text color for dropdown items */
+        }
+
+            /* Change the dropdown items background on hover */
+            .form-inline .dropdown-service option:hover {
+                background-color: #f8f9fa; /* Light grey background for hovered item */
+            }
+
+/* Target the dropdown, assuming you're using a class like .dropdown-service for it */
+.dropdown-service {
+    margin-top: 10px; /* Adjust the value as needed to push it down */
+    /* Rest of your styles */
+}
+
+
 
 .carousel .item .btn {
     align-self: center; /* Center button within the flex container */
     margin-top: 10px; /* Add space above the button */
 }
 
-/* Responsive adjustments for smaller screens */
-@media (max-width: 767px) {
-    .thumb-wrapper {
-        margin-bottom: 20px; /* Increase space on smaller screens */
+
+/* Responsive adjustments if necessary */
+@media (max-width: 768px) {
+    .bg-dark {
+        flex-direction: column; /* Stack elements vertically on smaller screens */
     }
 
-    .img-box {
-        height: 150px; /* Adjust height on smaller screens */
+    .form-inline {
+        width: 100%; /* Take the full width on smaller screens */
+        margin-bottom: 10px; /* Space between the elements when stacked */
     }
 }
+
+
+
+
+
+/*Unable to get footer stop stay datalist base color-profile page. Spent alot color-profile time trying stop fix cite however, didnt't succeed. Removed for the momentt */
+/* footer {
+    height: 70px; /* Or whatever height your footer should be */
+/*flex-shrink: 0;*/ /* Prevents the footer from shrinking */
+/* Rest of your footer styles */
+/*}
+
+footer.border-top {
+    background-color: #fadadd;*/ /* Lighter shade of pink */
+/*color: white;*/ /* White text colour */
+/*text-align: center;*/ /* Centers the text horizontally */
+/*}
+
+footer a {
+    color: white;*/ /* Ensures links are white */
+/*text-decoration: underline;*/ /* Underline for better visibility and consistency */
+/*}*/
+
+/* Adjusting hover effects for links within the footer */
+/*footer a:hover, footer a:focus {
+        color: #f98ca1;*/ /* Slightly darker shade of the lighter pink for hover effect */
+/*text-decoration: none;*/ /* Optional: removes the underline on hover for a different effect */
+/*}*/
