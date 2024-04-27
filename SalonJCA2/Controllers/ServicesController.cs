@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Hosting;
-using System.Drawing.Printing;
 using SalonJCA2.Models;
 
 namespace SalonJCA2.Controllers
@@ -18,6 +16,7 @@ namespace SalonJCA2.Controllers
             _hostEnvironment = environment;
 
         }
+        //View the Services
         public IActionResult Index()
         {
             ViewBag.products = _db.products.ToList();
@@ -25,7 +24,7 @@ namespace SalonJCA2.Controllers
             ViewBag.servicelist = _db.services.ToList();
             return View();
         }
-
+        //Delete the Services
         public IActionResult Delete(int id)
         {
             var data = _db.services.Where(x => x.id == id).FirstOrDefault();
@@ -33,15 +32,18 @@ namespace SalonJCA2.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+        //Search the Service
         public IActionResult Search(int id)
         {
             ViewBag.products = _db.products.ToList();
-            ViewBag.types = _db.types.Where(x=>x.productid==id).ToList();
+            ViewBag.types = _db.types.Where(x => x.productid == id).ToList();
             ViewBag.servicelist = _db.services.ToList();
             Services srv = new Services();
             srv.Productid = id;
-            return View("Index",srv);
+            return View("Index", srv);
         }
+
+        //Add a Service Model
         [HttpPost]
         public IActionResult Add(Services model)
         {
@@ -55,7 +57,7 @@ namespace SalonJCA2.Controllers
                 var extension = Path.GetExtension(file.FileName);
 
 
-                 fil = "\\images\\" + fileName + extension;
+                fil = "\\images\\" + fileName + extension;
                 using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
                 {
                     file.CopyTo(fileStreams);
@@ -64,9 +66,11 @@ namespace SalonJCA2.Controllers
 
             model.path = fil;
 
+            //Add the Service and save the DB changes 
             _db.Add(model);
             _db.SaveChanges();
 
+            //Redirect to Index
             return RedirectToAction("Index");
         }
     }

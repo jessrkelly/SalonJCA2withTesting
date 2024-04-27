@@ -10,12 +10,14 @@ namespace SalonJCA2.Controllers
         {
             _db = db;
         }
+        //View the product list (GET)
         public IActionResult Index()
         {
             ViewBag.productlist = _db.products.ToList();
             return View();
         }
 
+        //Add a Product to the model(POST)
         [HttpPost]
         public IActionResult Add(Products model)
         {
@@ -24,12 +26,13 @@ namespace SalonJCA2.Controllers
             return RedirectToAction("Index");
         }
 
-		public IActionResult Delete(int id)
-		{
-			var data = _db.products.Where(x => x.id == id).FirstOrDefault();
-			_db.Remove(data);
-			_db.SaveChanges();
-			return RedirectToAction("Index");
-		}
-	}
+        //Delete the product (DELETE)
+        public IActionResult Delete(int id)
+        {
+            var data = _db.products.Where(x => x.id == id).FirstOrDefault();
+            _db.Remove(data);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+    }
 }

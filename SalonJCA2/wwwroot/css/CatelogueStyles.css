@@ -1,14 +1,13 @@
-﻿
-/* I will use a soft tone of coloyr on my website. Such as soft pinks/purples (Pastel shades). I used online sources such as https://htmlcolors.com/palette/323/pastel 
+﻿/* I will use a soft tone of coloyr on my website. Such as soft pinks/purples (Pastel shades). I used online sources such as https://htmlcolors.com/palette/323/pastel 
     where they have great colour combinations aand codes available
 */
 
 body {
     background-color: #fff5f8; /* Light blush background */
     font-family: "Open Sans", sans-serif;
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
-    height: 100%; /* Ensures the body takes at least the full height of the viewport */
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
 html, body {
@@ -19,10 +18,6 @@ html, body {
     flex-direction: column;
 }
 
-    body > .main-content {
-        flex: 1 0 auto; /* The 1 will allow the content to expand, 0 prevents it from shrinking, and auto determines the basis for the layout to be automatic. */
-        /* Add padding-bottom if your footer has a fixed height, equivalent to the height of the footer, to prevent content from hiding behind it */
-    }
 
 h2 {
     color: #333; /* Softened text colour for better readability */
@@ -69,7 +64,7 @@ h2 {
 
     #registerSubmit:hover {
         background-color: #ff5a70; /* darker blush pink for hover effect */
-        border-color: #ff5a70; /* Border color on hover */
+        border-color: #ff5a70; /* Border colour on hover */
     }
 
 #submit-button {
@@ -221,12 +216,12 @@ h2 {
 
 /* Button Styling */
 .thumb-content .btn-primary {
-    background-color: #ff6b81 !important; /* Pink color for the button */
+    background-color: #ff6b81 !important; /* Pink colour for the button */
     border: none !important; /* No border */
     border-radius: 25px !important; /* Fully rounded edges */
     padding: 10px 15px !important; /* Padding inside the button */
     font-size: 16px !important; /* Size of the text */
-    color: white !important; /* Text color */
+    color: white !important; /* Text colour */
     text-transform: uppercase; /* Uppercase text */
     font-weight: bold; /* Bold text */
     letter-spacing: 1px; /* Spacing between letters */
@@ -254,8 +249,8 @@ h6 {
 /* General styling for the navigation bar */
 .bg-dark {
     background-color: #333; /* Dark grey background */
-    padding: 55px 10px; /* Padding to match Bootstrap's default padding for containers */
-    border-radius: 10px; /* Optional: rounded corners */
+    padding: 55px 10px; /*  padding for containers */
+    border-radius: 10px; /*rounded corners */
 }
 
 /* Inline form group adjustments */
@@ -269,7 +264,7 @@ h6 {
     /* Styling for the 'Products' label */
     .form-inline h5 {
         margin-right: 10px; /* Space between the label and the dropdown */
-        color: white; /* White color for the label text */
+        color: white; /* White colour for the label text */
         margin-bottom: 0; /* Removes default bottom margin */
     }
 
@@ -280,7 +275,7 @@ h6 {
         padding: 8px 12px;
         font-size: 15px;
         line-height: 1.25;
-        color: #444; /* Text color */
+        color: #444; /* Text colour */
         background-color: #fff; /* White background for the dropdown */
         border: 1px solid #ced4da; /* Light grey border */
         border-radius: 4px; /* Rounded corners for the dropdown */
@@ -293,7 +288,7 @@ h6 {
         .form-inline .btn-default:focus,
         .form-inline .dropdown-service:active,
         .form-inline .btn-default:active {
-            border-color: #aaa; /* Darker border color when the dropdown is focused or active */
+            border-color: #aaa; /* Darker border colour when the dropdown is focused or active */
             box-shadow: 0 0 0 0.2rem rgba(255, 133, 162, 0.25); /* Optional: Adds a glow effect on focus */
         }
 
@@ -301,7 +296,7 @@ h6 {
         .form-inline .dropdown-service option {
             padding: 10px; /* Padding inside each dropdown option */
             background-color: white; /* Ensures the dropdown items have a white background */
-            color: #444; /* Text color for dropdown items */
+            color: #444; /* Text colour for dropdown items */
         }
 
             /* Change the dropdown items background on hover */
@@ -309,10 +304,9 @@ h6 {
                 background-color: #f8f9fa; /* Light grey background for hovered item */
             }
 
-/* Target the dropdown, assuming you're using a class like .dropdown-service for it */
+/* Target the dropdown */
 .dropdown-service {
     margin-top: 10px; /* Adjust the value as needed to push it down */
-    /* Rest of your styles */
 }
 
 
