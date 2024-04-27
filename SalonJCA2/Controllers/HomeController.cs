@@ -90,5 +90,21 @@ namespace SalonJCA2.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        //Create API - I will use this to get the products in my client console 
+        [HttpGet]
+        public IActionResult GetServices()
+        {
+            var services = _db.services.Select(s => new {
+                s.id,
+                s.Name,
+                s.Price,
+                s.path,
+                s.Productid,
+                s.Typeid
+            }).ToList();
+            return Json(services);
+        }
+
     }
 }

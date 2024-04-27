@@ -1,51 +1,50 @@
-﻿using System;
-using Xunit;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SalonJCA2.Controllers;
 using SalonJCA2.Models;
 using Microsoft.AspNetCore.Mvc;
+using Xunit;
+
 namespace SalonJCA2.Tests.Controller_Tests
 {
     public class BookingsControllerTests
     {
-        // Use a method to create a new instance of DbContext with InMemory provider
         private ApplicationDbContext GetDatabaseContext()
         {
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(databaseName: "TestDb") // Make sure to use a unique name for each test run
+                .UseInMemoryDatabase(databaseName: "TestDb")
                 .Options;
 
             var databaseContext = new ApplicationDbContext(options);
             databaseContext.Database.EnsureCreated();
 
-            // Seed the database with test data
+            //Seed the database with test info 
             if (!databaseContext.UserRoles.Any())
             {
                 databaseContext.UserRoles.Add(new IdentityUserRole<string> { UserId = "test", RoleId = "test-role" });
-                // ... add any other seeding required for the tests
             }
 
+            //Save changes to DB anr return context 
             databaseContext.SaveChanges();
             return databaseContext;
         }
 
         [Fact]
-        public void Index_ReturnsAViewResult_WithABookingModel()
+
+        //Test method for checking if Index action returns a view result with a Booking model
+        public async Task Index_ReturnsViewResult_WithBookingModel()
         {
-            // Arrange
-            using var context = GetDatabaseContext();
-            var controller = new BookingsController(context);
-            int testServiceId = 1; // You should have this ID in your seeded data
+            //Arrange - get context of DB 
+            var dbContext = GetDatabaseContext();  //use in-memory database
+            var controller = new BookingsController(dbContext);  //pass the DB contect directly
 
-            // Act
-            var result = controller.Index(testServiceId);
+            //Act - Valid ID for testing - Assuming '1' is a valid ID
+            var result = await controller.Index(1); 
 
-            // Assert
+            //Assert - Chec result, check model is correct and checj the model is not Null
             var viewResult = Assert.IsType<ViewResult>(result);
-            var model = Assert.IsAssignableFrom<Bookings>(viewResult.Model);
-            Assert.NotNull(model); // Verify that a Bookings model is passed to the view
-                                   // Further assertions to check the data in the model (if needed)
+            var model = Assert.IsType<Bookings>(viewResult.Model);
+            Assert.NotNull(model);
         }
     }
 }
